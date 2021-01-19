@@ -1,0 +1,112 @@
+# Hexo 配置信息
+## 文档: https://hexo.io/zh-cn/docs/configuration
+## 源码: https://github.com/hexojs/hexo/
+
+# Site 网站
+title: Promise # 网站标题
+subtitle: '' # 网站副标题
+description: '' # 网站描述
+keywords: 个人博客  # 网站关键词，支持多个关键词
+author: Promise # 您的名字
+language: zh-CN # 网站使用的语言
+timezone: '' # 网站时区
+
+# URL 网址
+## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
+url: http://example.com # 最终线上的网址必须以http:// 或者https:// 开头
+root: / # 网站根目录
+permalink: posts/:abbrlink.html # 文章的 永久链接 格式
+abbrlink: 
+  alg: crc32
+  rep: hex
+permalink_defaults: # 永久链接中各部分的默认值
+pretty_urls: # 改写 permalink 的值来美化 URL
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Directory 目录
+source_dir: source # 资源文件夹，这个文件夹用来存放内容
+public_dir: public # 公共文件夹，这个文件夹用于存放生成的站点文件
+tag_dir: tags # 便签文件夹
+archive_dir: archives # 归档文件夹
+category_dir: categories # 分类文件夹
+code_dir: downloads/code # Include code 文件夹，source_dir 下的子目录
+i18n_dir: :lang # 国际化（i18n）文件夹
+skip_render: # 跳过指定文件的渲染。匹配到的文件将会被不做改动地复制到 public 目录中。您可使用 glob 表达式来匹配路径。
+
+# Writing 文章
+new_post_name: :title.md # 新文章的文件名称
+default_layout: post # 预设布局
+titlecase: false # 把标题转换为 title case
+external_link: # 在新标签中打开链接
+  enable: true # 是否在新标签中打开链接 默认true
+  field: site # 对整个网站（site）生效或仅对文章（post）生效
+  exclude: '' # 需要排除的域名。主域名和子域名如 www 需分别配置
+filename_case: 0 # 把文件名称转换为 (1) 小写或 (2) 大写 默认不转换0
+render_drafts: false # 显示草稿
+post_asset_folder: true # 启动 Asset 文件夹
+marked: # 设置markdown方式引入图片是的渲染路径为相对路径
+  prependRoot: true
+  postAsset: true
+relative_link: false # 把链接改为与根目录的相对位置
+future: true # 显示未来的文章
+highlight: # 代码块的设置, see Highlight.js(https://hexo.io/docs/syntax-highlight#Highlight-js) section for usage guide
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs: # 代码块的设置, see PrismJS(https://hexo.io/docs/syntax-highlight#PrismJS) section for usage guide
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator: # 首页设置
+  path: '' # 首页的路径
+  per_page: 10 # 首页文章每页显示的数目 0=关闭分页功能
+  order_by: -date # 文章的排序规则 默认采用时间倒序排序
+
+# Category & Tag 分类和标签
+default_category: uncategorized # 默认分类
+category_map: # 分类别名
+tag_map: # 标签别名
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true # 是否在头部插入meta(https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta)相关信息
+
+# Date / Time format 日期/时间格式
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD # 日期格式
+time_format: HH:mm:ss # 时间格式
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: 'mtime' # 设置页面所显示的更新时间 mtime使用文件的最后修改时间、date用git工作流中、empty直接删除updated
+
+# Pagination 分页
+## Set per_page to 0 to disable pagination
+per_page: 10 # 每页显示的文章数(0=关闭分页功能)
+pagination_dir: page # 分页目录
+
+# Include / Exclude file(s) 包括或不包括目录和文件 使用 glob 表达式 对目录和文件进行匹配
+## include:/exclude: options only apply to the 'source/' folder
+include: # Hexo 默认会忽略隐藏文件和文件夹（包括名称以下划线和 . 开头的文件和文件夹，Hexo 的 _posts 和 _data 等目录除外）。通过设置此字段将使 Hexo 处理他们并将它们复制到 source 目录下。
+exclude: # Hexo 会忽略这些文件和目录
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: butterfly
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: ''

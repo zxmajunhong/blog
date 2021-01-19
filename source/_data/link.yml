@@ -1,0 +1,6 @@
+# 配置友情链接 https://butterfly.js.org/posts/dc584b87/#%E5%8F%8B%E6%83%85%E9%8F%88%E6%8E%A5
+- class_name: 网站
+  class_desc: 值得推荐的网站
+  link_list:
+    - name: MSDN
+      link: https://developer.mozilla.org/zh-CN/
