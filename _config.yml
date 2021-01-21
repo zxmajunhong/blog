@@ -5,7 +5,7 @@
 # Site 网站
 title: Promise # 网站标题
 subtitle: '' # 网站副标题
-description: '' # 网站描述
+description: '前端开发、技术学习、技术探讨、求职面试、个人简介' # 网站描述
 keywords: 个人博客  # 网站关键词，支持多个关键词
 author: Promise # 您的名字
 language: zh-CN # 网站使用的语言
@@ -13,7 +13,7 @@ timezone: '' # 网站时区
 
 # URL 网址
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://example.com # 最终线上的网址必须以http:// 或者https:// 开头
+url: http://www.wmm20.com # 最终线上的网址必须以http:// 或者https:// 开头
 root: / # 网站根目录
 permalink: posts/:abbrlink.html # 文章的 永久链接 格式
 abbrlink: 
@@ -52,7 +52,7 @@ relative_link: false # 把链接改为与根目录的相对位置
 future: true # 显示未来的文章
 highlight: # 代码块的设置, see Highlight.js(https://hexo.io/docs/syntax-highlight#Highlight-js) section for usage guide
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace: ''
   wrap: true
