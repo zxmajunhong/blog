@@ -1,7 +1,7 @@
 name: Super-Linter
 
 # Run this workflow every time a new commit pushed to your repository
-on: push
+on: workflow_dispatch # 测试改为手动触发
 
 jobs:
   # Set the job key. The key is displayed as the job name
@@ -23,3 +23,4 @@ jobs:
         env:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JAVASCRIPT_DEFAULT_STYLE: prettier
