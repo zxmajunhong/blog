@@ -10,6 +10,7 @@ keywords: 个人博客  # 网站关键词，支持多个关键词
 author: Promise # 您的名字
 language: zh-CN # 网站使用的语言
 timezone: '' # 网站时区
+email: mailto:p_romise@qq.com
 
 # URL 网址
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
