@@ -5,7 +5,7 @@
   "scripts": {
     "build": "hexo clean && hexo generate && gulp",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
+    "deploy": "./deploy.js",
     "server": "hexo server"
   },
   "hexo": {
@@ -32,6 +32,8 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-html-minifier-terser": "^6.0.1",
     "gulp-htmlclean": "^2.7.22",
-    "gulp-uglify": "^3.0.2"
+    "gulp-uglify": "^3.0.2",
+    "inquirer": "^7.3.3",
+    "cross-spawn": "^7.0.3"
   }
 }
