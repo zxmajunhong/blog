@@ -1,57 +1,53 @@
 #!/usr/bin/env node
 const spawn = require('cross-spawn');
 const inquirer = require('inquirer');
-
-let a = '';
-
+const path = require('path');
 
 inquirer
   .prompt([
-  // {
-  //   type: 'checkbox',
-  //   message: '请选择需要打包的环境',
-  //   name: 'env',
-  //   choices: [
-  //     { name: '预发布环境', value: 'pre' },
-  //     { name: '正式环境', value: 'prod' },
-  //     new inquirer.Separator(),
-  //     { name: 'short选择', value: 'short', short: '选择后显示', checked: true }
-  //   ]
-  // },
-  {
-    type: 'input',
-    name: 'number',
-    message: '输入数字',
-    validate: function(value) {
-      if (/^\d+$/.test(value)) {
-        return true;
-      }
-      return '请输入一个数字';
+    {
+      type: 'rawlist',
+      message: '选择操作',
+      name: 'operate',
+      choices: [
+        {
+          name: '启动服务',
+          value: 'server',
+        },
+        {
+          name: '编译打包',
+          value: 'build',
+        },
+        {
+          name: '仅发布',
+          value: 'publish',
+        },
+        {
+          name: '打包部署',
+          value: 'buildPublish',
+        }
+      ]
     },
-    filter: (v) => {
-      return v*2;
-    },
-    suffix: '^_^'
-  },
-  {
-    type: 'number',
-    name: 'sz',
-    message: '请输入数字1或者2',
-    validate: (v, d) => {
-      a = d;
-      if (v === 1 || v === 2) {
-        return true;
-      }
-      return '请输入数字1或者2';
-    }
-  },
-  {
-    type: 'password',
-    name: 'pwd',
-    message: '请输入密码'
-  }
   ])
   .then((answer) => {
+    switch (answer.operate) {
+      case 'server':
+        spawn.sync('npm', ['run', 'server'], {cwd: __dirname, stdio: 'inherit'});
+        break;
+      case 'build':
+        spawn('npm', ['run', 'build']);
+      case 'publish':
+        upload();
+      case 'buildPublish':
+        spawn.sync('npm', ['run', 'build']);
+        upload();
+      default:
+        console.log('请选择操作');
+        break;
+    }
     console.log('answer', answer);
-    console.log('a', a);
   });
+
+function upload() {
+  spawn.sync('rsync', ['-avzP', 'public/', 'mjh@www.wmm20.com::blog'], {stdio: 'inherit'});
+}

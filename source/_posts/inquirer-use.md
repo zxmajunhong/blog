@@ -175,4 +175,136 @@ prompts.complete();
 ```
 
 # 案例说明
+```js
+// example.js
+const inquirer = require('inquirer');
 
+/** 模拟一个网上订餐的过程 */
+inquirer
+  .prompt([
+    {
+      /** 多选类型的交互 */
+      type: 'checkbox',
+      name: 'goods',
+      message: '请选择商品',
+      choices: [
+        new inquirer.Separator('==家常小炒=='), '酸辣土豆丝', '麻婆豆腐', '辣椒炒肉', '鱼香肉丝',
+        new inquirer.Separator('==美味鲜汤=='), '番茄蛋汤', '紫菜蛋汤', '莲藕排骨汤',
+        new inquirer.Separator('==主食=='), '米饭', '馒头', '面条',
+        new inquirer.Separator('==饮料=='), '可乐', '雪碧', '橙汁',
+      ],
+      loop: false,
+    },
+    {
+      /** 快捷扩展类型的交互 (请注意key为单个单词，不要使用h保留单词) */
+      type: 'expand',
+      name: 'taste',
+      message: '请选择辣椒炒肉的口味',
+      choices: [
+        {
+          key: 'l',
+          name: '微辣',
+          value: '微辣'
+        },
+        {
+          key: 'm',
+          name: '中辣',
+          value: '中辣'
+        },
+        {
+          key: 's',
+          name: '重辣',
+          value: '重辣'
+        }
+      ],
+      /** 在选择了辣椒炒肉后才有口味的选择 */
+      when: (answer) => {
+        return /辣椒炒肉/.test(answer.goods.toString());
+      }
+    },
+    {
+      /** 确认类型的交互 */
+      type: 'confirm',
+      name: 'package',
+      message: '是否打包?',
+      default: false, // 默认不打包
+    },
+    {
+      type: 'input',
+      name: 'people',
+      message: '请输入就餐人数',
+      when: (answer) => {
+        return answer.package;
+      },
+      validate: (value) => {
+        /** 对数字类型的输入最好采用普通输入类型的交互，自带的number类型的数字验证存在验证失败后不能重新输入的bug */
+        if (/^\d+/.test(value)) {
+          return true;
+        }
+        return '请输入数字';
+      }
+    },
+    {
+      /** 输入类型的交互 */
+      type: 'input',
+      name: 'phone',
+      message: '请输入手机号',
+      /** 如果是要打包需要登记手机号 */
+      when: (answer) => {
+        return answer.package;
+      },
+      /** 验证手机号是否正确 */
+      validate: (value) => {
+        if (/^(?:(?:\+|00)86)?1\d{10}$/.test(value)) {
+          return true;
+        }
+        return '请输入正确的手机号';
+      }
+    },
+    {
+      type: 'confirm',
+      name: 'isRemark',
+      message: '是否需要添加备注',
+      when: (answer) => {
+        return answer.package;
+      },
+      default: false,
+    },
+    {
+      /** 编辑类型的交互 */
+      type: 'editor',
+      name: 'remark',
+      message: '请输入备注',
+      when: (answer) => {
+        return answer.package && answer.isRemark;
+      }
+    },
+    {
+      type: 'input',
+      name: 'comment',
+      message: '好评有奖哦',
+    },
+    {
+      type: 'rawlist',
+      name: 'award',
+      message: '请选择奖励',
+      choices: [
+        '返现1元',
+        '代金券5元',
+        {
+          name: '8折打折券',
+          value: '8折打折券',
+          checked: true, // 默认选中
+        }
+      ],
+      when: (answer) => {
+        return answer.comment != '';
+      }
+    }
+  ])
+  .then((answer) => {
+    console.log('最终结果', answer);
+  });
+```
+
+![example](example.gif)
