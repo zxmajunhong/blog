@@ -36,16 +36,18 @@ inquirer
         break;
       case 'build':
         spawn('npm', ['run', 'build']);
+        break;
       case 'publish':
         upload();
+        break;
       case 'buildPublish':
         spawn.sync('npm', ['run', 'build']);
         upload();
+        break;
       default:
         console.log('请选择操作');
         break;
     }
-    console.log('answer', answer);
   });
 
 function upload() {
